@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <style>
+            /* Set black background color, white text and some padding */
+            footer {
+                background-color: #555;
+                color: white;
+                padding: 15px;
+            }
+        </style>
+    </head>
+
+    <body>
+      {%load static%}
+        <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">&#x2630;</button> <a class="navbar-brand" href="#">Logo</a>
+            <div class="collapse navbar-collapse"
+            id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active nav-item"><a href="#" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link">Messages</a>
+                    </li>
+                </ul>
+                <form class="form-inline ml-auto" role="search">
+                    <div class="form-group input-group">
+                        <input type="text" class="form-control" placeholder="Search.."> <span class="input-group-btn">
+
+            <button class="btn btn-secondary" type="button">
+
+              <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </span>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav ml-auto">
+                  {% if request.user.is_authenticated %}
+                    <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-user"></span> My Account</a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-user"></span> Logged in as {{user}}</a>
+                    </li>
+                    <li class="nav-item"><a href="logout" class="nav-link"><span class="glyphicon glyphicon-user"></span> Log out</a>
+                    </li>
+                  {% else %}
+                    <li class="nav-item"><a href="login" class="nav-link"><span class="glyphicon glyphicon-user"></span> Log in</a>
+                    </li>
+                    <li class="nav-item"><a href="register" class="nav-link"><span class="glyphicon glyphicon-user"></span> Register</a>
+                    </li>
+                  {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-3 well">
+                    <div class="card bg-light card-body mb-3">
+                        <p><a href="#">My Profile</a>
+                        </p>
+                        <img src="bird.jpg" class="rounded-circle" height="65" width="65" alt="Avatar">
+                    </div>
+                    <div class="card bg-light card-body mb-3">
+                        <p><a href="#">Interests</a>
+                        </p>
+                        <p> <span class="badge badge-dark">News</span>
+ <span class="badge badge-primary">W3Schools</span>
+                            <span
+                            class="badge badge-success">Labels</span> <span class="badge badge-info">Football</span>
+ <span class="badge badge-warning">Gaming</span>
+                                <span
+                                class="badge badge-danger">Friends</span>
+                        </p>
+                    </div>
+                    <div class="alert alert-success fade in"> <a href="#" class="close" data-dismiss="alert" aria-label="close">&#xD7;</a>
+                        <p><strong>Ey!</strong>
+                        </p>People are looking at your profile. Find out who.</div>
+                    <p><a href="#">Link</a>
+                    </p>
+                    <p><a href="#">Link</a>
+                    </p>
+                    <p><a href="#">Link</a>
+                    </p>
+                </div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card text-left">
+                                <div class="card-body">
+                                    <p contenteditable="true">Status: Feeling Blue</p>
+                                    <button type="button" class="btn btn-secondary btn-sm"> <span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card bg-light card-body mb-3">
+                                <p>John</p>
+                                <img src="bird.jpg" class="rounded-circle" height="55" width="55"
+                                alt="Avatar">
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card bg-light card-body mb-3">
+                                <p>Just Forgot that I had to mention something about someone to someone about
+                                    how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I
+                                    remember.... no I don&apos;t.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card bg-light card-body mb-3">
+                                <p>Bo</p>
+                                <img src="bandmember.jpg" class="rounded-circle" height="55" width="55"
+                                alt="Avatar">
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card bg-light card-body mb-3">
+                                <p>Just Forgot that I had to mention something about someone to someone about
+                                    how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I
+                                    remember.... no I don&apos;t.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card bg-light card-body mb-3">
+                                <p>Jane</p>
+                                <img src="bandmember.jpg" class="rounded-circle" height="55" width="55"
+                                alt="Avatar">
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card bg-light card-body mb-3">
+                                <p>Just Forgot that I had to mention something about someone to someone about
+                                    how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I
+                                    remember.... no I don&apos;t.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card bg-light card-body mb-3">
+                                <p>Anja</p>
+                                <img src="bird.jpg" class="rounded-circle" height="55" width="55"
+                                alt="Avatar">
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card bg-light card-body mb-3">
+                                <p>Just Forgot that I had to mention something about someone to someone about
+                                    how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I
+                                    remember.... no I don&apos;t.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 well">
+                    <div class="thumbnail">
+                        <p>Upcoming Events:</p>
+                        <img src="paris.jpg" alt="Paris" width="400" height="300">
+                        <p><strong>Paris</strong>
+                        </p>
+                        <p>Fri. 27 November 2015</p>
+                        <button class="btn btn-primary">Info</button>
+                    </div>
+                    <div class="card bg-light card-body mb-3">
+                        <p>ADS</p>
+                    </div>
+                    <div class="card bg-light card-body mb-3">
+                        <p>ADS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="container-fluid text-center">
+            <p>Footer Text</p>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+    </body>
+
+</html>
