@@ -1,10 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-        <title>Bootstrap Example</title>
+        <title>ZOOP</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'zoop/favicon.ico' %}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         <style>
             /* Set black background color, white text and some padding */
@@ -19,15 +21,9 @@
     <body>
       {%load static%}
         <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">&#x2630;</button> <a class="navbar-brand" href="#">Logo</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">&#x2630;</button> <a class="navbar-brand" href="#">Home</a>
             <div class="collapse navbar-collapse"
             id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active nav-item"><a href="#" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link">Messages</a>
-                    </li>
-                </ul>
                 <form class="form-inline ml-auto" role="search">
                     <div class="form-group input-group">
                         <input type="text" class="form-control" placeholder="Search.."> <span class="input-group-btn">
@@ -163,14 +159,6 @@
                     </div>
                 </div>
                 <div class="col-md-2 well">
-                    <div class="thumbnail">
-                        <p>Upcoming Events:</p>
-                        <img src="paris.jpg" alt="Paris" width="400" height="300">
-                        <p><strong>Paris</strong>
-                        </p>
-                        <p>Fri. 27 November 2015</p>
-                        <button class="btn btn-primary">Info</button>
-                    </div>
                     <div class="card bg-light card-body mb-3">
                         <p>ADS</p>
                     </div>
