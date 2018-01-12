@@ -9,6 +9,23 @@
     {{ add_post_form.as_p }}
     <button type="submit">Add post</button>
   </form>
+  <h1> TEST TIMELINE </h1>
+  <div class="col">
+    {% for post in posts %}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card text-left">
+
+          <div class="card-body">
+            <p>{{post.content}}</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
 
 </div>
 {%endblock%}

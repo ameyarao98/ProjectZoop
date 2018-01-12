@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate
 from .forms import *
 from django.shortcuts import render, redirect
 from zoop.timelines import *
+from .models import Post
 
 # Create your views here.
 def index(request):
@@ -41,4 +42,8 @@ def testing(request):
             new_form.user_id = request.user.id
             new_form.save()
     add_post_form = AddPostForm()
-    return render(request, 'zoop/testing.html', {'add_post_form' : add_post_form})
+    posts = Post.objects.filter(user_id = request.user.id)[:10]
+    print(posts)
+    return render(request, 'zoop/testing.html',
+                            {'add_post_form' : add_post_form,
+                            'posts' : posts,})
