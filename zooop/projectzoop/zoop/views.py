@@ -2,7 +2,6 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from .forms import *
 from django.shortcuts import render, redirect
-from zoop.timelines import *
 from .models import Post
 
 # Create your views here.
