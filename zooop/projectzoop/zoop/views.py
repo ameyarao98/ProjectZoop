@@ -34,6 +34,19 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'zoop/register.html', {'form': form})
 
+def profile(request):
+    if request.method == 'POST':
+        form = AddPostForm(request.POST)
+        if form.is_valid():
+            new_form = form.save(commit = False)
+            new_form.user_id = request.user.id
+            new_form.save()
+    add_post_form = AddPostForm()
+    posts = Post.objects.filter(user_id = request.user.id)[:10]
+    return render(request, 'zoop/profile.html',
+                            {'add_post_form' : add_post_form,
+                            'posts' : posts,})
+
 def testing(request):
     if request.method == 'POST':
         form = AddPostForm(request.POST)
