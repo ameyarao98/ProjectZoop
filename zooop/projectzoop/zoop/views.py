@@ -8,8 +8,8 @@ from .models import Post
 def index(request):
     current_user = request.user
     print(current_user.username)
-    context = {'user': current_user.username}
-    return render(request, 'zoop/index.html', context)
+    posts = Post.objects.all()[:10]
+    return render(request, 'zoop/timeline_page.html', {'posts': posts,})
 
 def login_view(request):
     return render(request, 'zoop/login_view.html')
@@ -42,7 +42,7 @@ def profile(request):
             new_form.save()
     add_post_form = AddPostForm()
     posts = Post.objects.filter(user_id = request.user.id)[:10]
-    return render(request, 'zoop/profile.html',
+    return render(request, 'zoop/timeline_page.html',
                             {'add_post_form' : add_post_form,
                             'posts' : posts,})
 

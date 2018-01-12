@@ -1,4 +1,5 @@
 {% extends 'zoop/site_base.html'%}
+
 {%block container%}
 {% load static %}
 <div class="row">
@@ -7,7 +8,7 @@
         <div class="card bg-light card-body mb-3">
             <p><a href="profile">{{request.user.username}}</a>
             </p>
-            <img src="{% static 'zoop/ph.png' %}" class="rounded-circle" height="65" width="65" alt="Avatar" style = "margin: auto;"/>  
+            <img src="{% static 'zoop/ph.png' %}" class="rounded-circle" height="65" width="65" alt="Avatar" style = "margin: auto;"/>
         </div>
         {%endif%}
         <div class="card bg-light card-body mb-3">
@@ -29,8 +30,7 @@
                 </div>
             </div>
         </div>
-        {% block content %}
-        {% endblock %}
+        {% include 'zoop/timeline.html'%}
     </div>
 </div>
 {%endblock%}
