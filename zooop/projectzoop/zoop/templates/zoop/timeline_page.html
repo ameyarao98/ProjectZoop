@@ -1,11 +1,12 @@
 {% extends 'zoop/site_base.html'%}
 {%block container%}
+{% load static %}
 <div class="row">
     <div class="col-md-3 well">
         <div class="card bg-light card-body mb-3">
             <p><a href="#">My Profile</a>
             </p>
-            <img src="bird.jpg" class="rounded-circle" height="65" width="65" alt="Avatar">
+            <img src="{% static 'zoop/ph.png' %}" class="rounded-circle" height="65" width="65" alt="Avatar">
         </div>
         <div class="card bg-light card-body mb-3">
             <p><a href="#">Emoji of the Day</a>
@@ -14,19 +15,14 @@
         <div class="card bg-light card-body mb-3">
             <p>Featured Zoop</p>
         </div>
-        <div class="alert alert-success fade in"> <a href="#" class="close" data-dismiss="alert" aria-label="close">&#xD7;</a>
-            <p><strong>Ey!</strong>
-            </p>People are looking at your profile. Find out who.</div>
     </div>
     <div class="col-md-7">
         <div class="row">
             <div class="col-md-12">
                 <div class="card text-left">
                     <div class="card-body">
-                        <p contenteditable="true">Status: Feeling Blue</p>
-                        <button type="button" class="btn btn-secondary btn-sm"> <span class="glyphicon glyphicon-thumbs-up"></span> I Like</button>
-                        <button type="button" class="btn btn-secondary btn-sm"> <span class="glyphicon glyphicon-thumbs-up"></span> React</button>
-                        <button type="button" class="btn btn-secondary btn-sm"> <span class="glyphicon glyphicon-thumbs-up"></span> Rezoop</button>
+                        <p contenteditable="true">😂👌🔥💯</p>
+                        <button type="button" class="btn btn-secondary btn-sm"> <span class="glyphicon glyphicon-thumbs-up"></span>Post</button>
                     </div>
                 </div>
             </div>
