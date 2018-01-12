@@ -17,7 +17,9 @@ def login_view(request):
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
+        print(form)
         if form.is_valid():
+            print('aaaa')
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
@@ -26,4 +28,4 @@ def register(request):
             return redirect('index')
     else:
         form = UserRegistrationForm()
-    return render(request, 'zoop/signup.html', {'form': form})
+    return render(request, 'zoop/register.html', {'form': form})
