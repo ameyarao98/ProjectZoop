@@ -1,0 +1,23 @@
+{%block navigation%}
+<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">&#x2630;</button> <a class="navbar-brand" href="/">Home</a>
+  <div class="collapse navbar-collapse" id="myNavbar">
+  </form>
+  <ul class="nav navbar-nav ml-auto">
+    {% if request.user.is_authenticated %}
+    <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-user"></span> Logged in as {{user}}</a>
+    </li>
+    <li class="nav-item"><a href="account" class="nav-link"><span class="glyphicon glyphicon-user"></span> My Account</a>
+    </li>
+    <li class="nav-item"><a href="logout" class="nav-link"><span class="glyphicon glyphicon-user"></span> Log out</a>
+    </li>
+    {% else %}
+    <li class="nav-item"><a href="login" class="nav-link"><span class="glyphicon glyphicon-user"></span>Log in</a>
+    </li>
+    <li class="nav-item"><a href="register" class="nav-link"><span class="glyphicon glyphicon-user"></span> Register</a>
+    </li>
+    {% endif %}
+  </ul>
+</div>
+</nav>
+{%endblock%}

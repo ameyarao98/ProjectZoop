@@ -9,7 +9,14 @@ class Post(models.Model):
     content = models.CharField(max_length = 2137)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+class UserDetails(models.Model):
+    #avatar =
+    #description =
+    pass
 
+class Following(models.Model):
+    #current_user =
+    pass
 
 '''
 class CustomUser(AbstractBaseUser):

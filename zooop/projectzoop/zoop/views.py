@@ -13,6 +13,8 @@ def index(request):
 def login_view(request):
     return render(request, 'zoop/login_view.html')
 
+def account(request):
+    return render(request, 'zoop/account.html')
 
 def register(request):
     if request.method == 'POST':
