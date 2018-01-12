@@ -9,14 +9,21 @@ class Post(models.Model):
     content = models.CharField(max_length = 2137)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-timestamp']
+
 class UserDetails(models.Model):
     #avatar =
     #description =
     pass
 
 class Following(models.Model):
-    #current_user =
-    pass
+    user = user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                    on_delete=models.CASCADE,
+                                    related_name='follows')
+    followed_user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                    on_delete=models.CASCADE,
+                                    related_name='followed')
 
 '''
 class CustomUser(AbstractBaseUser):

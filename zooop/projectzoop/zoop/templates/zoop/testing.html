@@ -1,0 +1,14 @@
+{% extends 'zoop/site_base.html'%}
+{%block container%}
+<div class="card">
+  <h1>testing zone</h1>
+  <br>
+  <h1>add post</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ add_post_form.as_p }}
+    <button type="submit">Add post</button>
+  </form>
+
+</div>
+{%endblock%}

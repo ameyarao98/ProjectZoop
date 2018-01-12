@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
-from .forms import UserRegistrationForm
+from .forms import *
 from django.shortcuts import render, redirect
+from zoop.timelines import *
 
 # Create your views here.
 def index(request):
@@ -31,3 +32,13 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'zoop/register.html', {'form': form})
+
+def testing(request):
+    if request.method == 'POST':
+        form = AddPostForm(request.POST)
+        if form.is_valid():
+            new_form = form.save(commit = False)
+            new_form.user_id = request.user.id
+            new_form.save()
+    add_post_form = AddPostForm()
+    return render(request, 'zoop/testing.html', {'add_post_form' : add_post_form})
