@@ -1,22 +1,21 @@
 {% extends 'zoop/timeline_page.html' %}
 {% load static %}
 {% block content %}
+<div class = "container">
 <div class="row">
-  <div class="col-md-3">
-    <div class="card bg-light card-body mb-3">
+    <div class="card bg-light card-body">
+        <div class="col-md-2" style="border: 1px solid black;">
       <p>John</p>
-      <img src="{% static 'zoop/ph.png' %}" class="rounded-circle" height="55" width="55"
-      alt="Avatar">
+      <img src="{% static 'zoop/ph.png' %}" class="rounded-circle" height="55" width="55" alt="Avatar">
     </div>
-  </div>
-  <div class="col-md-9">
-    <div class="card bg-light card-body mb-3">
-      <p>Just Forgot that I had to mention something about someone to someone about
+  <div class="col-md-10">
+      Just Forgot that I had to mention something about someone to someone about
         how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I
-        remember.... no I don&apos;t.</p>
-        <button type="button" class="btn btn-secondary btn-sm"> <span class="glyphicon glyphicon-thumbs-up"></span>React</button>
-        <button type="button" class="btn btn-secondary btn-sm"> <span class="glyphicon glyphicon-thumbs-up"></span>Rezoop</button>
+        remember.... no I don&apos;t.
       </div>
+      <button type="button" class="btn btn-secondary btn-sm"> <span class="glyphicon glyphicon-thumbs-up"></span>React</button>
+      <button type="button" class="btn btn-secondary btn-sm"> <span class="glyphicon glyphicon-thumbs-up"></span>Rezoop</button>
     </div>
   </div>
+</div>
 {% endblock %}
