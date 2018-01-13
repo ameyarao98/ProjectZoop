@@ -6,9 +6,20 @@
     <div class="col-md-3 well">
       {%if request.user.is_authenticated%}
         <div class="card bg-light card-body mb-3">
-            <p><a href="profile">{{request.user.username}}</a>
+            <p><a href="profile">{{user_object.username}}</a>
             </p>
             <img src="{% static 'zoop/ph.png' %}" class="rounded-circle" height="65" width="65" alt="Avatar" style = "margin: auto;"/>
+            {%if request.user.id != user_object.id%}
+              {%if followed%}
+                <form method="post" action="{% url 'unfollow' userid=user_object.id%}"> {% csrf_token %}
+                  <button type="submit" class="btn btn-secondary btn-sm"></span>Unfollow</button>
+                </form>
+              {% else %}
+              <form method="post" action="{% url 'follow' userid=user_object.id%}"> {% csrf_token %}
+                <button type="submit" class="btn btn-secondary btn-sm"></span>Follow</button>
+              </form>
+              {%endif%}
+            {%endif%}
         </div>
         {%endif%}
         <div class="card bg-light card-body mb-3">

@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import AbstractBaseUser
+
 
 # Create your models here.
 class Post(models.Model):
@@ -8,6 +8,9 @@ class Post(models.Model):
     post_id = models.BigAutoField(primary_key = True)
     content = models.CharField(max_length = 2137)
     timestamp = models.DateTimeField(auto_now_add=True)
+    original_poster = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                        on_delete=models.SET('deleted_user'),
+                                        related_name='author')
 
     class Meta:
         ordering = ['-timestamp']
@@ -17,8 +20,9 @@ class UserDetails(models.Model):
     #description =
     pass
 
+
 class Following(models.Model):
-    user = user = models.ForeignKey(settings.AUTH_USER_MODEL,
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
                                     on_delete=models.CASCADE,
                                     related_name='follows')
     followed_user = models.ForeignKey(settings.AUTH_USER_MODEL,
