@@ -11,4 +11,6 @@ urlpatterns = [
     path('account', core_views.account, name='account'),
     path('testing', core_views.testing, name='testing'),
     path('profile', core_views.profile, name='profile'),
+    path('profile/<int:userid>', core_views.userprofile, name='userprofile'),
+    path('page/<int:page_number>', core_views.index, name='userprofile'),
 ]

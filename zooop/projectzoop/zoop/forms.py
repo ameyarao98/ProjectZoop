@@ -18,6 +18,15 @@ class UserRegistrationForm(UserCreationForm):
         return user
 
 class AddPostForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(AddPostForm, self).__init__(*args, **kwargs)
+        self.fields['content'].label = 'Zoop what\'s on your mind'
+
     class Meta:
         model = Post
         fields = ['content']
+
+        widgets = {
+            'content' : forms.Textarea(attrs={'class':'form-control', 'rows' : 3}),
+        }

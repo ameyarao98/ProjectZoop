@@ -5,16 +5,16 @@
   </form>
   <ul class="nav navbar-nav ml-auto">
     {% if request.user.is_authenticated %}
-    <li class="nav-item"><a href="profile" class="nav-link"><span class="glyphicon glyphicon-user"></span> Logged in as {{user}}</a>
+    <li class="nav-item"><a href="/profile" class="nav-link"><span class="glyphicon glyphicon-user"></span> Logged in as {{user}}</a>
     </li>
-    <li class="nav-item"><a href="account" class="nav-link"><span class="glyphicon glyphicon-user"></span> My Account</a>
+    <li class="nav-item"><a href="/account" class="nav-link"><span class="glyphicon glyphicon-user"></span> My Account</a>
     </li>
-    <li class="nav-item"><a href="logout" class="nav-link"><span class="glyphicon glyphicon-user"></span> Log out</a>
+    <li class="nav-item"><a href="/logout" class="nav-link"><span class="glyphicon glyphicon-user"></span> Log out</a>
     </li>
     {% else %}
-    <li class="nav-item"><a href="login" class="nav-link"><span class="glyphicon glyphicon-user"></span>Log in</a>
+    <li class="nav-item"><a href="/login" class="nav-link"><span class="glyphicon glyphicon-user"></span>Log in</a>
     </li>
-    <li class="nav-item"><a href="register" class="nav-link"><span class="glyphicon glyphicon-user"></span> Register</a>
+    <li class="nav-item"><a href="/register" class="nav-link"><span class="glyphicon glyphicon-user"></span> Register</a>
     </li>
     {% endif %}
   </ul>

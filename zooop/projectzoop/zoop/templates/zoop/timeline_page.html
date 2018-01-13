@@ -20,16 +20,9 @@
         </div>
     </div>
     <div class="col-md-7">
-        <div class="row">
-            <div class="col-md-12" style = "margin-bottom: 2.5%;">
-                <div class="card text-left">
-                    <div class="card-body">
-                        <p contenteditable="true">😂👌🔥💯</p>
-                        <button type="button" class="btn btn-secondary btn-sm"> <span class="glyphicon glyphicon-thumbs-up"></span>Post</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+      {% if not visitor %}
+        {%include 'zoop/add_post.html'%}
+      {% endif %}
         {% include 'zoop/timeline.html'%}
     </div>
 </div>
