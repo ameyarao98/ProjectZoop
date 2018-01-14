@@ -2,7 +2,9 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.exceptions import ValidationError
 from zoop.models import Post
+from emoji.unicode_codes import UNICODE_EMOJI
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -69,9 +71,27 @@ class LoginForm(AuthenticationForm):
 
 class AddPostForm(forms.ModelForm):
 
+
+
     def __init__(self, *args, **kwargs):
         super(AddPostForm, self).__init__(*args, **kwargs)
         self.fields['content'].label = 'Zoop what\'s on your mind'
+        self.fields['content'].required = True
+
+    def clean(self):
+        ratio = 10
+        cleaned_data = super(AddPostForm, self).clean()
+        content = cleaned_data.get('content')
+        characters_total = len(content) - content.count(' ')
+        emoji_count = 0
+        for c in content:
+            if c in UNICODE_EMOJI:
+                emoji_count = emoji_count + 1
+        if emoji_count * ratio < characters_total - emoji_count:
+            raise ValidationError('NOT ENOUGH EMOJI')
+
+
+
 
     class Meta:
         model = Post

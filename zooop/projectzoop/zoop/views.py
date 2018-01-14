@@ -105,6 +105,7 @@ def userprofile(request, userid = -1, page_number = 1):
             followed = False
 
 
+    add_post_form = AddPostForm()
 
     if request.method == 'POST':
         form = AddPostForm(request.POST)
@@ -114,11 +115,14 @@ def userprofile(request, userid = -1, page_number = 1):
             new_form.original_poster_id = request.user.id
             new_form.save()
             return redirect('/profile/'+ str(request.user.id) + '/1')
+        else:
+            print('dupex')
+            add_post_form = form
     #print(settings.AUTH_USER_MODEL.models)
     #user = User.objects.get(id = userid)
     user = get_object_or_404(User, id = userid)
 
-    add_post_form = AddPostForm()
+
     post_list = Post.objects.filter(user_id = userid)
     paginator = Paginator(post_list, 10)
     d = 4
@@ -192,7 +196,7 @@ def search(request):
         results = User.objects.none()
         details = User.objects.none()
     else:
-        results = User.objects.filter(username__icontains = srch)[:25]
+        results = User .objects.filter(username__icontains = srch)[:25]
         details = UserDetails.objects.filter(user__id__in = results)[:25]
     return render(request, 'zoop/search.html', {'results' : results,
                                                 'details' : details})
