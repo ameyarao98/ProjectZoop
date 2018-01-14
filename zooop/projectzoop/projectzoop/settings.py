@@ -121,6 +121,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 LOGIN_REDIRECT_URL = '/'
 #AUTH_USER_MODEL = 'zoop.CustomUser'
