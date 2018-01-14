@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from .forms import *
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post, Following
+from .models import Post, Following, UserDetails
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -184,3 +184,11 @@ def delete_post(request, post_id):
         Post.objects.get(pk=post_id).delete()
     next = request.POST.get('next', '/')
     return HttpResponseRedirect(next)
+
+def search(request):
+    srch = request.GET.get('phrase','')
+    results = User.objects.filter(username__icontains = srch)[:25]
+    details = UserDetails.objects.filter(user__id__in = results)[:25]
+    print(details[0].description)
+    return render(request, 'zoop/search.html', {'results' : results,
+                                                'details' : details})
