@@ -5,7 +5,7 @@ from . import views as core_views
 
 urlpatterns = [
     path('', core_views.index, name='index'),
-    path('login', core_views.login, name='login'),
+    path('login', core_views.login_view, name='login'),
     path('logout', auth_views.logout, name='logout'),
     path('register', core_views.register, name='register'),
     path('account', core_views.account, name='account'),

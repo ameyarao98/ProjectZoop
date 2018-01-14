@@ -36,6 +36,21 @@ class UserRegistrationForm(UserCreationForm):
             user.save()
         return user
 
+class LoginForm(forms.Form):
+    user = forms.CharField(required=True, label=False)
+    password = forms.CharField(widget=forms.PasswordInput(), label=False)
+
+    class Meta:
+        model = User
+        fields = ("user", "password")
+
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
+        self.fields['user'].widget.attrs={'class':'form-group form-control',
+        'placeholder':'Username', 'autofocus':''}
+        self.fields['password'].widget.attrs={'class':'form-group form-control',
+        'placeholder':'Password', 'value':''}
+
 class AddPostForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
