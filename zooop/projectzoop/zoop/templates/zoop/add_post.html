@@ -4,9 +4,18 @@
       <div class="card-body">
         <form method="post">
           {% csrf_token %}
-          {{ add_post_form.as_p }}
+
+            {{add_post_form.content.label}}
+            {{ add_post_form.content }}
+            {{ add_post_form.error}}
+
           <div id="container" style="padding-bottom: 10px;"></div>
-          <button type="submit" class="btn btn-secondary btn-sm"> <span class="glyphicon glyphicon-thumbs-up"></span>Post</button>
+          <div class="alert alert-danger text-center" role="alert">
+          {% for error in add_post_form.non_field_errors %}
+            {{ error|escape}}
+          {% endfor %}
+        </div>
+          <button type="submit" class="btn btn-block btn-secondary"> <span class="glyphicon glyphicon-thumbs-up"></span>Post</button>
         </form>
       </div>
     </div>
