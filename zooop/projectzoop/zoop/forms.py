@@ -10,6 +10,26 @@ class UserRegistrationForm(UserCreationForm):
         model = User
         fields = ("username", "email", "password1", "password2")
 
+
+    def __init__(self, *args, **kwargs):
+        super(UserRegistrationForm, self).__init__(*args, **kwargs)
+
+        self.fields['username'].widget.attrs={'class':'form-group form-control',
+        'placeholder':'Username', 'autofocus':''}
+        self.fields['email'].widget.attrs={'class':'form-group form-control',
+        'placeholder':'Email', 'autofocus':''}
+        self.fields['password1'].widget.attrs={'class':'form-group form-control',
+        'placeholder':'Password', 'value':''}
+        self.fields['password2'].widget.attrs={'class':'form-group form-control',
+        'placeholder':'Confirm Password', 'value':''}
+        self.fields['username'].label = "Sign Up"
+        self.fields['username'].label_suffix = False
+        self.fields['username'].help_text = ""
+        self.fields['email'].label = False
+        self.fields['password1'].label = False
+        self.fields['password2'].label = False
+
+
     def save(self, commit=True):
         user = super(UserRegistrationForm, self).save(commit=False)
         user.email = self.cleaned_data["email"]

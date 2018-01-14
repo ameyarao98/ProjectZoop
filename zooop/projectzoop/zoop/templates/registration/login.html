@@ -8,17 +8,17 @@
   <input type="password" id="inputPassword" class="form-control" placeholder="Password" required> -->
   {% csrf_token %}
   <fieldset>
-    <div>
-      <input placeholder="User name" name="username" autofocus="">
+    <div class="form-group">
+      <input class="form-control"
+      placeholder="User name" name="username" autofocus="">
     </div>
-    <div>
-      <input placeholder="Password" name="password" type="password" value="">
+
+    <div class="form-group">
+      <input class="form-control"
+      placeholder="Password" name="password" type="password" value="">
     </div>
   </fieldset>
 
-
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-
-
 </form>
 {% endblock %}
