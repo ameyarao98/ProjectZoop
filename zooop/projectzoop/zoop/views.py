@@ -116,7 +116,6 @@ def userprofile(request, userid = -1, page_number = 1):
             new_form.save()
             return redirect('/profile/'+ str(request.user.id) + '/1')
         else:
-            print('dupex')
             add_post_form = form
     #print(settings.AUTH_USER_MODEL.models)
     #user = User.objects.get(id = userid)
