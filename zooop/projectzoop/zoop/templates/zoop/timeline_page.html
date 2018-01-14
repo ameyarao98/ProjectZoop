@@ -6,7 +6,7 @@
     <div class="col-md-3 well">
       {%if request.user.is_authenticated%}
         <div class="card bg-light card-body mb-3">
-            <p><a href="profile">{{user_object.username}}</a>
+            <p><a href="/profile/{{request.user.id}}">{{user_object.username}}</a>
             </p>
             <img src="{% static 'zoop/ph.png' %}" class="rounded-circle" height="65" width="65" alt="Avatar" style = "margin: auto;"/>
             {%if request.user.id != user_object.id%}
@@ -30,11 +30,13 @@
             <p>Featured Zoop</p>
         </div>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-7 margin-bottom">
       {% if not visitor %}
         {%include 'zoop/add_post.html'%}
       {% endif %}
         {% include 'zoop/timeline.html'%}
+        {% include 'zoop/pagination.html' %}
     </div>
+
 </div>
 {%endblock%}

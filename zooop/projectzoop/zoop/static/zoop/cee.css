@@ -1,3 +1,9 @@
 .card-post{
   height:100%;
 }
+.margin-bottom{
+  margin-bottom: 100px;
+}
+.pagination {
+   justify-content: center;
+}
