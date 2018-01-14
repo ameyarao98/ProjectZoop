@@ -5,5 +5,14 @@
   margin-bottom: 100px;
 }
 .pagination {
-   justify-content: center;
+  justify-content: center;
+}
+
+.go_right {
+  text-align: right;
+}
+
+.margin_top {
+  margin-top: 0px;
+
 }
