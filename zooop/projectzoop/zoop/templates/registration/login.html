@@ -1,0 +1,27 @@
+{% extends 'zoop/login_base.html' %}
+{% block content %}
+<form method="post" action="{% url 'login' %}">
+  <h1 class="form-signin-heading">Sign in</h1>
+  {% csrf_token %}
+  <fieldset>
+    <div class="form-group">
+      <input class="form-control"
+      placeholder="User name" name="username" autofocus="">
+    </div>
+
+    <div class="form-group">
+      <input class="form-control"
+      placeholder="Password" name="password" type="password" value="">
+    </div>
+  </fieldset>
+  <div class="row">
+    <div class="col-md-6">
+      <h5>No Zoop account?<a href="register">  Register</a> now.</h5>
+    </div>
+    <div id="forgot_password" class="col-md-6">
+      <h5><a href="changepassword">  Forgot password?</a></h5>
+    </div>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>
+{% endblock %}
