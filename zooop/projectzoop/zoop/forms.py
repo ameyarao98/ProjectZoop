@@ -80,3 +80,7 @@ class AddPostForm(forms.ModelForm):
         widgets = {
             'content' : forms.Textarea(attrs={'id': 'emoji-form', 'class':'form-control', 'rows' : 3, 'style':'resize:none;display: none'}),
         }
+
+
+class ImageUploadForm(forms.Form):
+    image = forms.ImageField()
