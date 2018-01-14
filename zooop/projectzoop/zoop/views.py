@@ -52,7 +52,19 @@ def index(request, page_number = 1):
                             'user_object' : current_user})
 
 def login_view(request):
-    return render(request, 'zoop/login_view.html')
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('index')
+    else:
+        form = LoginForm()
+    return render(request, 'zoop/login.html', {'form': form})
 
 def account(request):
     return render(request, 'zoop/account.html')
