@@ -9,25 +9,47 @@
     </div>
   </div>
   <div class="col-md-9">
-    <div class="card bg-light card-body card-post">
-      <p class = 'emoji-font'>{{post.content}}</p>
-      {%if request.user.id != post.user.id%}
-      <form method="post" action="{%url 'rezoop' post_id=post.post_id%}">
-        {% csrf_token %}
+    <div class="card bg-light card-body card-post" style="
+    padding-top: 0px">
+      <div class="row">
+        <div class="col">
+          {% if post.user.id != post.original_poster.id %}
+          <p>REZOOPED from <a href='/profile/{{post.original_poster.id}}'>{{post.original_poster}}</a></p>
+          {% endif %}
+        </div>
+        <div class="col go_right">
+          <p>When was it made?</p>
+        </div>
+      </div>
+      <div class="row">
+        <p class = 'emoji-font'>{{post.content}}</p>
+        {%if request.user.id != post.user.id%}
+        <form method="post" action="{%url 'rezoop' post_id=post.post_id%}">
+          {% csrf_token %}
         <input type="hidden" name="next" value="{{ request.path }}">
-        <button type="submit" class="btn btn-secondary">Rezoop</button>
-      </form>
-      {% else %}
-      <!--TODO ADD CONFIRM -->
-      <form method="post" action="{%url 'delete_post' post_id=post.post_id%}">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ request.path }}">
-        <button type="submit" class="btn btn-secondary">Delete</button>
-      </form>
-      {%endif%}
-      {% if post.user.id != post.original_poster.id %}
-      <p>REZOOPED from <a href='/profile/{{post.original_poster.id}}'>{{post.original_poster}}</a></p>
-      {% endif %}
+      </div>
+      <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+          <button type="submit" class="btn btn-secondary">Rezoop</button>
+          </form>
+          {% else %}
+          <!--TODO ADD CONFIRM -->
+          <form method="post" action="{%url 'delete_post' post_id=post.post_id%}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <button type="submit" class="btn btn-secondary">Delete</button>
+          </form>
+          {%endif%}
+        </div>
+      </div>
     </div>
   </div>
 </div>
