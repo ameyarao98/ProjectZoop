@@ -10,7 +10,7 @@
   </div>
   <div class="col-md-9">
     <div class="card bg-light card-body card-post">
-      <p>{{post.content}}</p>
+      <p class = 'emoji-font'>{{post.content}}</p>
       {%if request.user.id != post.user.id%}
       <form method="post" action="{%url 'rezoop' post_id=post.post_id%}">
         {% csrf_token %}

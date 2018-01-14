@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'EmojiFont';
+  src:  url('emojione-svg.woff2') format('woff2'),
+        url('emojione-svg.woff') format('woff');
+}
 .card-post{
   height:100%;
 }
@@ -6,4 +11,10 @@
 }
 .pagination {
    justify-content: center;
+}
+
+
+
+.emoji-font{
+  font-family: EmojiFont;
 }
