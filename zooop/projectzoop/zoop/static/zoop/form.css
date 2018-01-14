@@ -14,8 +14,12 @@ footer {
   bottom: 0;
 }
 
-#id_username {
-  align-content: flex-start;
+#Terms a {
+  color: blue;
+}
+
+#forgot_password {
+  text-align: right;
 }
 
 .errorlist{

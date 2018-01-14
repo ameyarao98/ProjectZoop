@@ -22,8 +22,7 @@ class UserRegistrationForm(UserCreationForm):
         'placeholder':'Password', 'value':''}
         self.fields['password2'].widget.attrs={'class':'form-group form-control',
         'placeholder':'Confirm Password', 'value':''}
-        self.fields['username'].label = "Sign Up"
-        self.fields['username'].label_suffix = False
+        self.fields['username'].label = False
         self.fields['username'].help_text = ""
         self.fields['email'].label = False
         self.fields['password1'].label = False

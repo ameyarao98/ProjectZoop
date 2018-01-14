@@ -1,8 +1,10 @@
 {% extends 'zoop/login_base.html' %}
 {% block content %}
+  <h1 class="form-signin-heading">Sign up</h1>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn-block btn btn-secondary">Register</button>
+    <button type="submit" class="btn-block btn btn-primary">Register</button>
+    <p id="Terms">By signing up, you agree to the <a>Terms of Zoop</a> and <a>Privacy Policy</a>, including <a>Zoop Use</a>. Others will be able to find you by email when provided.</p>
   </form>
 {% endblock %}
