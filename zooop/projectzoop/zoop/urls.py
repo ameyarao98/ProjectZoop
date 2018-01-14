@@ -14,7 +14,8 @@ urlpatterns = [
     path('profile/<int:userid>/', core_views.userprofile, name='userprofile'),
     path('profile/<int:userid>/<int:page_number>', core_views.userprofile, name='userprofilepage'),
     path('<int:page_number>', core_views.index, name='userprofile'),
-    path('rezoop/<int:post_id>', core_views.rezoop, name='rezoop'),
+    path('rezoop/<int:post_id>/', core_views.rezoop, name='rezoop'),
     path('follow/<int:userid>', core_views.follow, name='follow'),
     path('unfollow/<int:userid>', core_views.unfollow, name='unfollow'),
+    path('delete/<int:post_id>', core_views.delete_post, name='delete_post')
 ]
