@@ -2,8 +2,9 @@
 
 {%block container%}
 {% load static %}
+<link rel="stylesheet" href="{% static "zoop/form.css" %}">
 <div class="row">
-    <div class="col-md-3 well">
+    <div class="col-md-2 well">
       {%if request.user.is_authenticated%}
         <div class="card bg-light card-body mb-3">
             <p><a href="/profile/{{request.user.id}}">{{user_object.username}}</a>
@@ -12,11 +13,11 @@
             {%if request.user.id != user_object.id%}
               {%if followed%}
                 <form method="post" action="{% url 'unfollow' userid=user_object.id%}"> {% csrf_token %}
-                  <button type="submit" class="btn btn-primary btn-sm"></span>Unfollow</button>
+                  <button type="submit" class="btn btn-primary btn-sm follow"></span>Unfollow</button>
                 </form>
               {% else %}
               <form method="post" action="{% url 'follow' userid=user_object.id%}"> {% csrf_token %}
-                <button type="submit" class="btn btn-primary btn-sm"></span>Follow</button>
+                <button type="submit" class="btn btn-primary btn-sm follow"></span>Follow</button>
               </form>
               {%endif%}
             {%endif%}
@@ -30,7 +31,7 @@
             <p>Featured Zoop</p>
         </div>
     </div>
-    <div class="col-md-7 margin-bottom">
+    <div class="col-md-8 margin-bottom">
       {% if not visitor %}
         {%include 'zoop/add_post.html'%}
       {% endif %}
