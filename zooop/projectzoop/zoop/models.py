@@ -11,12 +11,29 @@ class Post(models.Model):
     original_poster = models.ForeignKey(settings.AUTH_USER_MODEL,
                                         on_delete=models.SET('deleted_user'),
                                         related_name='author')
-
     class Meta:
         ordering = ['-timestamp']
 
+class PostReactions(models.Model):
+    post  = models.OneToOneField(
+        Post,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    react_one = models.IntegerField(default=0)
+    react_two = models.IntegerField(default=0)
+    react_three = models.IntegerField(default=0)
+    react_four = models.IntegerField(default=0)
+    react_five = models.IntegerField(default=0)
+    react_six = models.IntegerField(default=0)
+
+
 class UserDetails(models.Model):
-    #avatar =
+    user  = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     #description =
     pass
 

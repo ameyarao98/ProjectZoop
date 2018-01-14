@@ -47,5 +47,5 @@ class AddPostForm(forms.ModelForm):
         fields = ['content']
 
         widgets = {
-            'content' : forms.Textarea(attrs={'class':'form-control', 'rows' : 3}),
+            'content' : forms.Textarea(attrs={'class':'form-control', 'rows' : 3, 'style':'resize:none;'}),
         }

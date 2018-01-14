@@ -11,6 +11,23 @@
   <div class="col-md-9">
     <div class="card bg-light card-body card-post">
       <p>{{post.content}}</p>
+      {%if request.user.id != post.user.id%}
+      <form method="post" action="{%url 'rezoop' post_id=post.post_id%}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <button type="submit" class="btn btn-secondary">Rezoop</button>
+      </form>
+      {% else %}
+      <!--TODO ADD CONFIRM -->
+      <form method="post" action="{%url 'delete_post' post_id=post.post_id%}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <button type="submit" class="btn btn-secondary">Delete</button>
+      </form>
+      {%endif%}
+      {% if post.user.id != post.original_poster.id %}
+      <p>REZOOPED from <a href='/profile/{{post.original_poster.id}}'>{{post.original_poster}}</a></p>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -19,7 +36,7 @@
 <div class="col-md">
   <div class="card bg-light card-body card-post">
     <p>NOTHING TO SEE HERE 😎</p>
-    </div>
   </div>
+</div>
 
 {% endfor %}

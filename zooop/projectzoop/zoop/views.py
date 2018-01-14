@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from .forms import *
 from django.shortcuts import render, redirect, get_object_or_404
@@ -157,9 +157,18 @@ def unfollow(request, userid):
                             followed_user_id = userid).delete()
     return redirect('/profile/' + str(userid))
 
-def rezoop(request, postid):
-    og_post = Post.objects.get(post_id = postid)
+def rezoop(request, post_id):
+    og_post = Post.objects.get(pk = post_id)
     if og_post.user_id != request.user.id:
         Post.objects.get_or_create(user_id = request.user.id,
                             content = og_post.content,
                             original_poster_id = og_post.user_id)
+    next = request.POST.get('next', '/')
+    return HttpResponseRedirect(next)
+
+def delete_post(request, post_id):
+    post = Post.objects.get(pk = post_id)
+    if request.user.id == post.user.id:
+        Post.objects.get(pk=post_id).delete()
+    next = request.POST.get('next', '/')
+    return HttpResponseRedirect(next)
