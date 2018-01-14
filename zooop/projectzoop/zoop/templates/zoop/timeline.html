@@ -2,10 +2,10 @@
 {%for post in posts%}
 <div class="row mb-3">
   <div class="col-md-3">
-    <div class="card bg-light card-body ">
+    <div class="card bg-light card-body" >
       <a href='/profile/{{post.user.id}}'><p>{{post.user}}</p></a>
       <img src="{% static 'zoop/ph.png' %}" class="rounded-circle" height="55" width="55"
-      alt="Avatar">
+      alt="Avatar" style="max-width: 100%; margin: auto">
     </div>
   </div>
   <div class="col-md-9">
