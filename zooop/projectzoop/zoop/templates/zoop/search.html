@@ -1,0 +1,22 @@
+{% extends 'zoop/site_base.html'%}
+{%block container%}
+{% load static %}
+<div class="row">
+  <div class="col-md-7 margin-bottom mx-auto">
+    {% if results.all %}
+    {% include 'zoop/user_card.html' %}
+    {% else %}
+    <div class="row mb-3">
+      <div class="col-md-12" style = "margin-bottom: 2.5%;">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3>No search results here</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+</div>
+{%endblock%}

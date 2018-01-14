@@ -34,8 +34,8 @@ class UserDetails(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
-    #description =
-    pass
+    description = models.CharField(max_length = 3000)
+
 
 
 class Following(models.Model):

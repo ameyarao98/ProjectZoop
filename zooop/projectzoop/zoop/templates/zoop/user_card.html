@@ -1,0 +1,13 @@
+{% load extra_templates %}
+<div class="row mb-3">
+  {% for result in results %}
+  <div class="col-md-12" style = "margin-bottom: 2.5%;">
+    <div class="card text-left">
+      <div class="card-body">
+        <p><a href="/profile/{{result.id}}">{{result.username}}</a></p>
+        <p>{{details|get_at_index:forloop.counter0|get_details:'description'}}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
