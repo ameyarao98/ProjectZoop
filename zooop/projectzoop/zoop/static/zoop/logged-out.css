@@ -1,0 +1,56 @@
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+
+}
+a:hover{
+  text-decoration: none;
+  color: black;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: #fff5af;
+}
+
+.top-bar {
+  box-shadow: 0px 3px 10px black;
+  background-color: black;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  color: #fff5af;
+}
+.yougohometoyourhouse {
+  background-color: lightyellow;
+  width: 500px;
+  height: auto;
+  position: absolute;
+  top:30%;
+  left:50%;
+  margin-left: -250px;
+  padding: 5%;
+  text-align: center;
+  border: 0px solid black;
+  border-radius: 5px;
+  box-shadow:  0px 0px 10px black;
+}
+.yougohometoyourhouse:hover {
+  background-color: lightyellow;
+  width: 500px;
+  height: auto;
+  position: absolute;
+  top:30%;
+  left:50%;
+  margin-left: -250px;
+  padding: 5%;
+  text-align: center;
+  border: 0px solid black;
+  border-radius: 5px;
+  box-shadow:  0px 0px 5px black;
+}

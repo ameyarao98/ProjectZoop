@@ -12,11 +12,11 @@
             {%if request.user.id != user_object.id%}
               {%if followed%}
                 <form method="post" action="{% url 'unfollow' userid=user_object.id%}"> {% csrf_token %}
-                  <button type="submit" class="btn btn-secondary btn-sm"></span>Unfollow</button>
+                  <button type="submit" class="btn btn-primary btn-sm"></span>Unfollow</button>
                 </form>
               {% else %}
               <form method="post" action="{% url 'follow' userid=user_object.id%}"> {% csrf_token %}
-                <button type="submit" class="btn btn-secondary btn-sm"></span>Follow</button>
+                <button type="submit" class="btn btn-primary btn-sm"></span>Follow</button>
               </form>
               {%endif%}
             {%endif%}
