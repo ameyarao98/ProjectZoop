@@ -188,8 +188,11 @@ def delete_post(request, post_id):
 
 def search(request):
     srch = request.GET.get('phrase','')
-    results = User.objects.filter(username__icontains = srch)[:25]
-    details = UserDetails.objects.filter(user__id__in = results)[:25]
-    print(details[0].description)
+    if srch == '':
+        results = User.objects.none()
+        details = User.objects.none()
+    else:
+        results = User.objects.filter(username__icontains = srch)[:25]
+        details = UserDetails.objects.filter(user__id__in = results)[:25]
     return render(request, 'zoop/search.html', {'results' : results,
                                                 'details' : details})
