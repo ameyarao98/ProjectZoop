@@ -5,4 +5,8 @@
 zooop/projectzoop/zoop/__pycache__/views.cpython-36.pyc
 zooop/projectzoop/zoop/__pycache__/urls.cpython-36.pyc
 *.pyc
+<<<<<<< HEAD
 zooop/projectzoop/db.sqlite3
+=======
+zooop/projectzoop/db - Copy.sqlite3
+>>>>>>> 73d8417b2bb88a79d116bd2f899cde1a618326db

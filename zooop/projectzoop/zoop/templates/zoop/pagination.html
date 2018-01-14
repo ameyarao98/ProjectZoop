@@ -1,0 +1,30 @@
+{%block pagination%}
+<div class="pagination-div">
+  <ul class="pagination">
+    {% if posts.has_previous %}
+    <li class='page-item'><a class='page-link' href="1">&laquo;</a></li>
+    <li class='page-item'><a class='page-link' href="{{ posts.previous_page_number }}">&lt;</a></li>
+    {% else %}
+    <li class='page-item disabled'><a class='page-link'>&laquo;</a></li>
+    <li class='page-item disabled'><a class='page-link'>&lt;</a></li>
+
+    {% endif %}
+    {% for l in  pagination_range %}
+       {% if posts.number == forloop.counter %}
+           <li class='page-item active'><a class='page-link' href="{{forloop.counter}}">{{forloop.counter}}</a></li>
+        {% else %}
+           <li class='page-item'><a class='page-link' href="{{forloop.counter}}">{{forloop.counter}}</a></li>
+       {% endif %}
+     {% endfor %}
+
+    {% if posts.has_next %}
+    <li class='page-item'><a class='page-link' href="{{ posts.next_page_number }}">&gt;</a></li>
+    <li class='page-item'><a class='page-link' href="{{ posts.paginator.num_pages }}">&raquo;</a></li>
+    {% else %}
+    <li class='page-item disabled'><a class='page-link'>&gt;</a></li>
+    <li class='page-item disabled'><a class='page-link'>&raquo;</a></li>
+
+    {% endif %}
+
+</div>
+{% endblock %}

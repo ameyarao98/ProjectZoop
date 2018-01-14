@@ -6,23 +6,48 @@ from .models import Post, Following
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
-def index(request, page_number = 0):
+def index(request, page_number = 1):
 
     if request.method == 'POST':
         form = AddPostForm(request.POST)
         if form.is_valid():
             new_form = form.save(commit = False)
             new_form.user_id = request.user.id
+            new_form.original_poster_id = request.user.id
             new_form.save()
+            return redirect('index')
     current_user = request.user
-    posts = Post.objects.filter()[10*page_number:10 * (page_number + 1)]
-    #posts_new = Post.objects.filter(following__)
+    post_list = Post.objects.filter()[:500]
+    if request.user.is_authenticated:
+        followed_users = Following.objects.filter(user = request.user).values('followed_user')
+        post_list = Post.objects.filter(Q(user__id__in = followed_users) |
+                                    Q(user__id = request.user.id))
+    paginator = Paginator(post_list, 10)
+    d = 4
+    if page_number + d > paginator.num_pages:
+        overflow = page_number + d - paginator.num_pages
+        fi = page_number - overflow - d
+        if fi < 1:
+            fi = 1
+        pagination_range = range(fi, paginator.num_pages + 1)
+    elif page_number - d < 1:
+        overflow = d - page_number + 1
+        fi = page_number + d + overflow + 1
+        if fi > paginator.num_pages + 1:
+            fi = paginator.num_pages + 1
+        pagination_range = range(1, fi)
+    else :
+        pagination_range = range(page_number - d, page_number + d + 1)
+    posts = paginator.get_page(page_number)
     add_post_form = AddPostForm()
     return render(request, 'zoop/timeline_page.html',
                             {'add_post_form' : add_post_form,
                             'posts' : posts,
+                            'pagination_range': pagination_range,
                             'visitor' : False,
                             'user_object' : current_user})
 
@@ -47,8 +72,10 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'zoop/register.html', {'form': form})
 
+def profile(request, userid = -1, page_number = 1):
+    return redirect('userprofile', userid = userid, page_number = page_number, permanent=True)
 
-def userprofile(request, userid = -1, page_number = 0):
+def userprofile(request, userid = -1, page_number = 1):
 
     if userid == -1:
         userid = request.user.id
@@ -73,16 +100,35 @@ def userprofile(request, userid = -1, page_number = 0):
             new_form.user_id = request.user.id
             new_form.original_poster_id = request.user.id
             new_form.save()
+            return redirect('/profile/'+ str(request.user.id) + '/1')
     #print(settings.AUTH_USER_MODEL.models)
     #user = User.objects.get(id = userid)
     user = get_object_or_404(User, id = userid)
 
     add_post_form = AddPostForm()
-    posts = Post.objects.filter(user_id = userid)[10*page_number:10 * (page_number + 1)]
+    post_list = Post.objects.filter(user_id = userid)
+    paginator = Paginator(post_list, 10)
+    d = 4
+    if page_number + d > paginator.num_pages:
+        overflow = page_number + d - paginator.num_pages
+        fi = page_number - overflow - d
+        if fi < 1:
+            fi = 1
+        pagination_range = range(fi, paginator.num_pages + 1)
+    elif page_number - d < 1:
+        overflow = d - page_number + 1
+        fi = page_number + d + overflow + 1
+        if fi > paginator.num_pages + 1:
+            fi = paginator.num_pages + 1
+        pagination_range = range(1, fi)
+    else :
+        pagination_range = range(page_number - d, page_number + d + 1)
+    posts = paginator.get_page(page_number)
     return render(request, 'zoop/timeline_page.html',
                             {'posts' : posts,
                             'add_post_form' : add_post_form,
                             'visitor': visitor,
+                            'pagination_range': pagination_range,
                             'followed': followed,
                             'user_object': user})
 
