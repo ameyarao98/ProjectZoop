@@ -10,12 +10,16 @@
             {{ add_post_form.error}}
 
           <div id="container" style="padding-bottom: 10px;"></div>
+<<<<<<< HEAD
           <div class="alert alert-danger text-center" role="alert">
           {% for error in add_post_form.non_field_errors %}
             {{ error|escape}}
           {% endfor %}
         </div>
           <button type="submit" class="btn btn-block btn-secondary"> <span class="glyphicon glyphicon-thumbs-up"></span>Post</button>
+=======
+          <button type="submit" class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-thumbs-up"></span>Post</button>
+>>>>>>> 891a170ced347404d69f93ee32786af87dfda6d0
         </form>
       </div>
     </div>
