@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static "zoop/style.css" %}">
     <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
+    <link href="form.css" rel="stylesheet">
   </head>
 
   <body>
@@ -27,12 +27,15 @@
       <!-- TODO: Would be nice to center this vertically-->
       <div class = "row" id = "form-block">
         <!-- TODO: Center this somehow-->
-        <div class="col-md-auto">
-          {% block content %}
-          {% endblock %}
+        <div class="col-md-9 mx-auto">
+          <div class="card bg-light card-body">
+            {% block content %}
+            {% endblock %}
+          </div>
+        </div>
       </div>
-      </div>
-
     </div> <!-- /container -->
+
+
   </body>
 </html>
