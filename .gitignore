@@ -5,3 +5,4 @@
 zooop/projectzoop/zoop/__pycache__/views.cpython-36.pyc
 zooop/projectzoop/zoop/__pycache__/urls.cpython-36.pyc
 *.pyc
+zooop/projectzoop/db.sqlite3
