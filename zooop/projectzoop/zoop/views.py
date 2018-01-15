@@ -17,6 +17,8 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 import sys
+from emoji.unicode_codes import UNICODE_EMOJI
+import random
 
 # Create your views here.
 def index(request, page_number = 1):
@@ -282,7 +284,8 @@ def upload_avatar(request):
 
 
 def get_reaction_list():
-        return ['💯', '😂', '😠', '😞', '😲', '🤔']
+    print(get_random_emoji())
+    return ['💯', '😂', '😠', '😞', '😲', '🤔']
 
 def get_reactions_dict(user_id, posts_queryset):
     ids = posts_queryset.values_list('post_id', flat=True)
@@ -325,3 +328,6 @@ def change_password(request):
     return render(request, 'registration/change_password.html', {
         'form': form
     })
+
+def get_random_emoji():
+    return(random.choice(UNICODE_EMOJI.keys()))
