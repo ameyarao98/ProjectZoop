@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url('^', include('django.contrib.auth.urls')),
+    url(r'^password/$', core_views.change_password, name='change_password'),
     path('upload_avatar', core_views.upload_avatar, name='upload_avatar'),
 ]
 
