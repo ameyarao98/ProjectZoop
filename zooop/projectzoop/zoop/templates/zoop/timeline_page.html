@@ -2,7 +2,19 @@
 
 {%block container%}
 {% load static %}
+<head>
 <link rel="stylesheet" href="{% static "zoop/form.css" %}">
+<style>
+{% if request.user.is_authenticated %}
+{% else %}
+body {
+    background-image: url("{% static "zoop/smiley.jpg" %}");
+    background-repeat: no-repeat, repeat;
+}
+
+{% endif %}
+    </style>
+</head>
 <div class="row">
     <div class="col-md-1">
     </div>
@@ -25,6 +37,8 @@
             {%endif%}
         </div>
         {%endif%}
+
+          {% if request.user.is_authenticated %}
         <div class="card bg-light card-body mb-3">
             <p><a href="#">Emoji of the Day</a>
             </p>
@@ -32,13 +46,18 @@
         <div class="card bg-light card-body mb-3">
             <p>Featured Zoop</p>
         </div>
+        {% endif %}
     </div>
     <div class="col-md-8 margin-bottom">
+      {% if request.user.is_authenticated %}
       {% if not visitor %}
         {%include 'zoop/add_post.html'%}
       {% endif %}
         {% include 'zoop/timeline.html'%}
         {% include 'zoop/pagination.html' %}
+      {% else %}
+          {% include 'zoop/welcome.html' %}
+      {% endif %}
     </div>
 
 </div>
