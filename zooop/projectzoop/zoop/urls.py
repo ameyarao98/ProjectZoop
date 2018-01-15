@@ -30,6 +30,7 @@ urlpatterns = [
     path('unfollow/<int:userid>', core_views.unfollow, name='unfollow'),
     path('delete/<int:post_id>', core_views.delete_post, name='delete_post'),
     path('search', core_views.search, name='search'),
+    path('react/<int:post_id>/<int:react_id>', core_views.react, name='react'),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url('^', include('django.contrib.auth.urls')),

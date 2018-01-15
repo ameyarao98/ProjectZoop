@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from django.contrib.auth import login, authenticate
 from .forms import *
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post, Following, UserDetails
+from .models import Post, Following, UserDetails, PostReaction
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -55,6 +55,9 @@ def index(request, page_number = 1):
                             'posts' : posts,
                             'pagination_range': pagination_range,
                             'visitor' : False,
+                            'reacts' : get_reaction_list(),
+                            'react_count' : get_reactions_count_dict(posts.object_list),
+                            'current_reacts': get_reactions_dict(request.user.id, posts.object_list),
                             'user_object' : current_user})
 
 def login_view(request):
@@ -154,6 +157,9 @@ def userprofile(request, userid = -1, page_number = 1):
                             'visitor': visitor,
                             'pagination_range': pagination_range,
                             'followed': followed,
+                            'reacts' : get_reaction_list(),
+                            'react_count' : get_reactions_count_dict(posts.object_list),
+                            'current_reacts': get_reactions_dict(request.user.id, posts.object_list),
                             'user_object': user})
 
 def testing(request):
@@ -189,6 +195,28 @@ def rezoop(request, post_id):
                             original_poster_id = og_post.user_id)
     next = request.POST.get('next', '/')
     return HttpResponseRedirect(next)
+
+def react(request, post_id, react_id):
+    if request.method == 'POST':
+        post = Post.objects.get(pk = post_id)
+        try:
+            reaction = PostReaction.objects.get(user_id = request.user.id,
+                                                post_id = post_id,
+                                                react_type = react_id)
+            reaction.delete()
+        except:
+            PostReaction(user_id = request.user.id,
+                        post_id = post_id,
+                        react_type = react_id).save()
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+
+
+
+
+def unreact(request, post_id):
+    pass
 
 def delete_post(request, post_id):
     post = Post.objects.get(pk = post_id)
@@ -253,3 +281,32 @@ def upload_avatar(request):
         else:
             return redirect('/account?file=bad')
     return HttpResponseForbidden('allowed only via POST')
+
+
+def get_reaction_list():
+        return ['💯', '😂', '😠', '😞', '😲', '🤔']
+
+def get_reactions_dict(user_id, posts_queryset):
+    ids = posts_queryset.values_list('post_id', flat=True)
+    react_dict = {}
+    for i in ids:
+        try:
+            reaction = PostReaction.objects.get(user_id = user_id, post_id = i)
+            react_dict[i] = int(reaction.react_type)
+        except:
+            react_dict[i] = None
+
+    for i in ids:
+            post_reactions = PostReaction.objects.filter(post_id = i)
+            react_dict['count_'+str(i)] = post_reactions.count()
+
+    return react_dict
+
+def get_reactions_count_dict(posts_queryset):
+    ids = posts_queryset.values_list('post_id', flat=True)
+    react_count = {}
+    for i in ids:
+        for y in range(1,7):
+            reactions = PostReaction.objects.filter(post_id = i, react_type = y).count()
+            react_count[(i,y)] = reactions
+    return react_count

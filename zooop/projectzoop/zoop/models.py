@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Post(models.Model):
@@ -14,21 +14,15 @@ class Post(models.Model):
     class Meta:
         ordering = ['-timestamp']
 
-class PostReactions(models.Model):
-    post  = models.OneToOneField(
-        Post,
-        on_delete=models.CASCADE,
-        primary_key=True,
-    )
-    react_one = models.IntegerField(default=0)
-    react_two = models.IntegerField(default=0)
-    react_three = models.IntegerField(default=0)
-    react_four = models.IntegerField(default=0)
-    react_five = models.IntegerField(default=0)
 
 class PostReaction(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    react_type = models.IntegerField(
+        validators=[MaxValueValidator(6), MinValueValidator(1)])
+
+    class Meta:
+        unique_together = (("post", "user"))
 
 class UserDetails(models.Model):
     user  = models.OneToOneField(
