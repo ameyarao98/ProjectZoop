@@ -5,6 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
 from zoop.models import Post
 from emoji.unicode_codes import UNICODE_EMOJI
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
