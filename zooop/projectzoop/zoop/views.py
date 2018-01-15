@@ -54,7 +54,7 @@ def index(request, page_number = 1):
     posts = paginator.get_page(page_number)
     add_post_form = AddPostForm()
     return render(request, 'zoop/timeline_page.html',
-                            {'add_post_form' : add_post_form,
+                            {'add_post_form' : None,
                             'posts' : posts,
                             'pagination_range': pagination_range,
                             'visitor' : False,
