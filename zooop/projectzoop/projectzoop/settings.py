@@ -40,7 +40,11 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'teamzoop420@gmail.com'
+EMAIL_HOST_PASSWORD = 'Dupa1234'
+EMAIL_USE_TLS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
