@@ -58,9 +58,10 @@ def index(request, page_number = 1):
     return render(request, 'zoop/timeline_page.html',
                             {'add_post_form' : None,
                             'posts' : posts,
+                            'emoji' : get_random_emoji(),
                             'pagination_range': pagination_range,
                             'visitor' : False,
-                            'reacts' : get_reaction_list(),
+                            'reacts' : get_reaction_list()[:1],
                             'react_count' : get_reactions_count_dict(posts.object_list),
                             'current_reacts': get_reactions_dict(request.user.id, posts.object_list),
                             'user_object' : current_user})
@@ -157,6 +158,7 @@ def userprofile(request, userid = -1, page_number = 1):
                             {'posts' : posts,
                             'add_post_form' : add_post_form,
                             'visitor': visitor,
+                            'emoji' : get_random_emoji()[:1],
                             'pagination_range': pagination_range,
                             'followed': followed,
                             'reacts' : get_reaction_list(),
@@ -284,7 +286,6 @@ def upload_avatar(request):
 
 
 def get_reaction_list():
-    print(get_random_emoji())
     return ['💯', '😂', '😠', '😞', '😲', '🤔']
 
 def get_reactions_dict(user_id, posts_queryset):
@@ -330,4 +331,4 @@ def change_password(request):
     })
 
 def get_random_emoji():
-    return(random.choice(UNICODE_EMOJI.keys()))
+    return(random.choice(list(UNICODE_EMOJI.keys())))
