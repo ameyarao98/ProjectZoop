@@ -58,10 +58,10 @@ def index(request, page_number = 1):
     return render(request, 'zoop/timeline_page.html',
                             {'add_post_form' : None,
                             'posts' : posts,
-                            'emoji' : get_random_emoji(),
+                            'emoji' : get_random_emoji()[:1],
                             'pagination_range': pagination_range,
                             'visitor' : False,
-                            'reacts' : get_reaction_list()[:1],
+                            'reacts' : get_reaction_list(),
                             'react_count' : get_reactions_count_dict(posts.object_list),
                             'current_reacts': get_reactions_dict(request.user.id, posts.object_list),
                             'user_object' : current_user})
