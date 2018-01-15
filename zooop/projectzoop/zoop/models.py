@@ -25,8 +25,10 @@ class PostReactions(models.Model):
     react_three = models.IntegerField(default=0)
     react_four = models.IntegerField(default=0)
     react_five = models.IntegerField(default=0)
-    react_six = models.IntegerField(default=0)
 
+class PostReaction(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 class UserDetails(models.Model):
     user  = models.OneToOneField(
