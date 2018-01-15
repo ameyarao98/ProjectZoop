@@ -72,7 +72,9 @@ def login_view(request):
     return render(request, 'zoop/login.html', {'form': form})
 
 def account(request):
-    return render(request, 'zoop/account.html')
+    response = request.GET.get('file', None)
+    print(response)
+    return render(request, 'zoop/account.html', {'file_response' : response})
 
 def register(request):
     if request.method == 'POST':

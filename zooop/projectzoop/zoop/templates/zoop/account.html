@@ -1,6 +1,5 @@
 {% extends 'zoop/site_base.html'%}
 {% load static %}
-{% get_media_prefix as MEDIA_PREFIX %}
 {%block container%}
 <head>
   <style>
@@ -79,14 +78,8 @@
             </div>
           </div>
           {% include 'zoop/upload_avatar.html' %}
+
         </div>
-        <script>
-        $(function() {
-          $('#profile-image1').on('click', function() {
-            $('#profile-image-upload').click();
-          });
-        });
-        </script>
       </div>
     </div>
 

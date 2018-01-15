@@ -5,4 +5,15 @@
     </p>
     <input type="submit" value="Submit" />
 </form>
+{% if file_response == 'bad' %}
+<div class="alert alert-danger text-center" role="alert">
+  <p>There was an error updating your avatar. Please make sure you are uploading valid JPEG image</p>
+</div>
+{% endif %}
+{% if file_response == 'ok' %}
+<div class="alert alert-success text-center" role="alert">
+  <p>Avatar successfully updated</p>
+</div>
+{% endif %}
+
 {% endblock %}
