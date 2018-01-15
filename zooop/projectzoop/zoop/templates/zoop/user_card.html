@@ -4,8 +4,8 @@
   <div class="col-md-12" style = "margin-bottom: 2.5%;">
     <div class="card text-left">
       <div class="card-body">
-        <p><a href="/profile/{{result.id}}">{{result.username}}</a></p>
-        <p>{{details|get_at_index:forloop.counter0|get_details:'description'}}</p>
+        <img src="{{MEDIA_URL}}avatars/{{result.id}}.jpg" class="rounded-circle" height="65" width="65" alt="Avatar" style = "margin: auto;"/>
+        <h1><a href="/profile/{{result.id}}">{{result.username}}</a></h1>
       </div>
     </div>
   </div>

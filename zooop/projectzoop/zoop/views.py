@@ -19,6 +19,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 import sys
 from emoji.unicode_codes import UNICODE_EMOJI
 import random
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request, page_number = 1):
@@ -79,6 +80,7 @@ def login_view(request):
         form = LoginForm()
     return render(request, 'zoop/login.html', {'form': form})
 
+@login_required
 def account(request):
     response = request.GET.get('file', None)
     return render(request, 'zoop/account.html', {'file_response' : response})
