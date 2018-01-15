@@ -8,15 +8,12 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-<<<<<<< HEAD
 from rest_framework import viewsets
 from .serializers import PostSerializer, UserDetailsSerializer
-=======
 from PIL import Image
 from io import BytesIO
 import sys
 
->>>>>>> 264477bdbc4bb7fc06c3a4f90223c0e080376b15
 # Create your views here.
 def index(request, page_number = 1):
 
@@ -208,7 +205,6 @@ def search(request):
     return render(request, 'zoop/search.html', {'results' : results,
                                                 'details' : details})
 
-<<<<<<< HEAD
 
 class PostViewSet(viewsets.ModelViewSet):
     """
@@ -228,7 +224,7 @@ class PostViewSet(viewsets.ModelViewSet):
         return queryset
 
     serializer_class = PostSerializer
-=======
+
 def upload_avatar(request):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
@@ -247,4 +243,3 @@ def upload_avatar(request):
             m.save()
             return HttpResponse('image upload success')
     return HttpResponseForbidden('allowed only via POST')
->>>>>>> 264477bdbc4bb7fc06c3a4f90223c0e080376b15
