@@ -17,6 +17,18 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emojione@3.1.2/extras/css/emojione.min.css"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script>
+// This version waits until jQuery's "ready" event
+(function($) {
+
+  $(window).load(function() {
+    $('.container').fadeIn(1000);
+    $('footer').fadeIn(1000);
+  });
+
+})(jQuery);
+</script>
   <style>
   *{
     font-family: 'Ubuntu', sans-serif;
@@ -28,6 +40,9 @@
   body{
     margin-bottom: 60px;
     background-color: #fff5af;
+  }
+  .container {
+    display: none;
   }
   /* Set black background color, white text and some padding */
   .clearfix:after {
@@ -45,8 +60,8 @@
     {%block container%}
     {%endblock%}
   </div>
-  <footer class= "container-fluid text-center">
-    <p>Footer Text</p>
+  <footer class= "container-fluid text-center" style = "display:none">
+    <p>© 2018 Group aa..uu..h...</p>
   </footer>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

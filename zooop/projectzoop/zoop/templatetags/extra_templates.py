@@ -12,7 +12,6 @@ def get_details(object, index):
 
 @register.filter
 def get_item(dictionary, key):
-    print(dictionary)
     return dictionary.get(key)
 
 @register.filter

@@ -14,12 +14,14 @@
     border: 2px solid #03b1ce ;}
     .tital{ font-size:16px; font-weight:500;}
     .bot-border{ border-bottom:1px #f8f8f8 solid;  margin:5px 0  5px 0}
+
+    .container { background-color: white}
     </style>
   </head>
   <body>
                 <h4 style="color:#00b1b1;">{{user}} </h4></span>
-                  USER'S E-MAIL
-                    <div align = "center" style ="padding-top:10px;"><img alt="User Pic" src="{{MEDIA_URL}}/avatars/{{request.user.id}}.jpg" id="profile-image1" class="img-circle img-responsive">
+                  {{user.email}}
+                    <div align = "center" style ="padding-top:10px;"><img alt="User Pic" src="{{MEDIA_URL}}avatars/{{request.user.id}}.jpg" id="profile-image1" class="img-circle img-responsive">
                 </div><br><br>
                 <h5>Update Avatar</h4>
           {% include 'zoop/upload_avatar.html' %}
