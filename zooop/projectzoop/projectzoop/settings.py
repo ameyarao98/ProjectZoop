@@ -131,4 +131,5 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 LOGIN_REDIRECT_URL = '/'
+STATIC_DOC_ROOT = os.path.join(os.getcwd(), 'media')
 #AUTH_USER_MODEL = 'zoop.CustomUser'

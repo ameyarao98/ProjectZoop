@@ -1,4 +1,5 @@
 {% extends 'zoop/site_base.html'%}
+{% load static %}
 {%block container%}
 <head>
   <style>
@@ -31,7 +32,7 @@
 
                 <div class="box-body">
                   <div class="col-sm-6">
-                    <div  align="center"> <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive">
+                    <div  align="center"> <img alt="User Pic" src="{{MEDIA_URL}}/avatars/{{request.user.id}}.jpg" id="profile-image1" class="img-circle img-responsive">
 
                       <input id="profile-image-upload" class="hidden" type="file">
                       <div style="color:#999;" >click here to change profile image</div>
@@ -77,14 +78,8 @@
             </div>
           </div>
           {% include 'zoop/upload_avatar.html' %}
+
         </div>
-        <script>
-        $(function() {
-          $('#profile-image1').on('click', function() {
-            $('#profile-image-upload').click();
-          });
-        });
-        </script>
       </div>
     </div>
 

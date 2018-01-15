@@ -3,10 +3,12 @@ from django.contrib.auth import views as auth_views
 from . import views as core_views
 
 from django.conf.urls import url, include
-from . import views
 
-from django.conf.urls import url, include
 from rest_framework import routers
+
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.static import serve
 
 router = routers.DefaultRouter()
 router.register(r'posts', core_views.PostViewSet, 'posts')
@@ -32,5 +34,12 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url('^', include('django.contrib.auth.urls')),
     path('upload_avatar', core_views.upload_avatar, name='upload_avatar'),
-
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]

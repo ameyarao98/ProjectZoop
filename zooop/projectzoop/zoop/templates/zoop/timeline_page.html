@@ -21,9 +21,10 @@ body {
     <div class="col-md-2 well">
       {%if request.user.is_authenticated%}
         <div class="card bg-light card-body mb-3">
-            <p><a href="/profile/{{request.user.id}}">{{user_object.username}}</a>
+            <a href="/profile/{{request.user.id}}"><p>{{user_object.username}}
             </p>
-            <img src="{% static 'zoop/ph.png' %}" class="rounded-circle" height="65" width="65" alt="Avatar" style = "margin: auto;"/>
+            <img src="{{MEDIA_URL}}/avatars/{{request.user.id}}.jpg" class="rounded-circle" height="65" width="65" alt="Avatar" style = "margin: auto;"/>
+            </a>
             {%if request.user.id != user_object.id%}
               {%if followed%}
                 <form method="post" action="{% url 'unfollow' userid=user_object.id%}"> {% csrf_token %}
