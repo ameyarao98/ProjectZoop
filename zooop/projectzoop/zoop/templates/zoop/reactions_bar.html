@@ -1,0 +1,29 @@
+{% block content %}
+{% load extra_templates %}
+  {% for reaction in reacts %}
+  <div class='col'>
+    <form method="post" action="{%url 'react' post_id=post.post_id react_id=forloop.counter%}">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.path }}">
+      {%if not current_reacts|get_item:post.post_id %}
+        <button type="submit" class="btn btn-outline-primary">{{reaction}}</button>
+      {% else %}
+
+        {% if current_reacts|get_item:post.post_id == forloop.counter%}
+            <button type="submit" class="btn btn-outline-primary active">{{reaction}}</button>
+        {% else %}
+          <button type="submit" class="btn btn-outline-primary" disabled>{{reaction}}</button>
+        {% endif %}
+      {%endif%}
+      {% for r in react_count|get_count_list:post.post_id %}
+        {% if forloop.counter == forloop.parentloop.counter %}
+
+        <p>count</p>
+        <p>{{r}}</p>
+        {% endif %}
+      {%endfor%}
+    </form>
+  </div>
+
+  {% endfor %}
+{% endblock %}
