@@ -30,6 +30,7 @@ urlpatterns = [
     path('search', core_views.search, name='search'),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url('^', include('django.contrib.auth.urls')),
     path('upload_avatar', core_views.upload_avatar, name='upload_avatar'),
 
 ]
