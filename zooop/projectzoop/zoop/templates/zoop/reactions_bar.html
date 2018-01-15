@@ -6,13 +6,15 @@
       {% csrf_token %}
       <input type="hidden" name="next" value="{{ request.path }}">
       {%if not current_reacts|get_item:post.post_id %}
-        <button type="submit" class="btn btn-outline-primary">{{reaction}}</button>
+        <button type="submit" class="btn btn-outline-primary" role="button">{{reaction}}</button>
       {% else %}
 
         {% if current_reacts|get_item:post.post_id == forloop.counter%}
-            <button type="submit" class="btn btn-outline-primary active">{{reaction}}</button>
+            <button tabindex="0" type="submit" class="btn btn-outline-primary active" role="button"
+            data-toggle="tooltip" title="Click to deselect">{{reaction}}</button>
         {% else %}
-          <button type="submit" class="btn btn-outline-primary" disabled>{{reaction}}</button>
+          <button tabindex="0" type="submit" class="btn btn-outline-primary" role="button"
+          data-toggle="tooltip" title="To use this react deselect the previous one">{{reaction}}</button>
         {% endif %}
       {%endif%}
       {% for r in react_count|get_count_list:post.post_id %}
@@ -24,6 +26,10 @@
       {%endfor%}
     </form>
   </div>
+
+  <script>
+    
+  </script>
 
   {% endfor %}
 {% endblock %}

@@ -62,7 +62,12 @@
       pickerPosition: "right",
       hideSource: false,
     });
+    $('[data-toggle="tooltip"]').popover()
+    $('.popover-dismiss').popover({
+      trigger: 'focus'
+    })
   });
+
 </script>
 
 </body>
