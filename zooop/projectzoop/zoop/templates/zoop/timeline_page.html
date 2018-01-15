@@ -8,9 +8,8 @@
 {% if request.user.is_authenticated %}
 {% else %}
 body {
-    background-image: url("{% static "zoop/smiley.jpg" %}");
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url("{% static "zoop/tile.png" %}");
+    background-repeat: repeat;
 }
 
 {% endif %}
