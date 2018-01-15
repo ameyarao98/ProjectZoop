@@ -12,6 +12,10 @@
   text-align: right;
 }
 
+.emoji-font {
+  padding: 8px;
+}
+
 footer {
   background-color: rgba(33, 37, 41, 0.85);
   color: white;
