@@ -11,6 +11,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from rest_framework import viewsets
 from .serializers import PostSerializer, UserDetailsSerializer
 from PIL import Image
+from rest_framework.exceptions import APIException
 from io import BytesIO
 import sys
 
@@ -215,10 +216,11 @@ class PostViewSet(viewsets.ModelViewSet):
 
     """
     def get_queryset(self):
-        username = self.request.query_params.get('username', None)
-        number = self.request.query_params.get('number', 1)
+        user_id = self.request.query_params.get('user', None)
+        number = int(self.request.query_params.get('number', 1))
         number = max(1, min(number, 50));
-        queryset = Post.objects.filter(username = user)[:number]
+        queryset = Post.objects.filter(user_id = user_id)[:number]
+        print(queryset)
         if not queryset:
             raise APIException("The provided username does not exist in the database")
         return queryset
