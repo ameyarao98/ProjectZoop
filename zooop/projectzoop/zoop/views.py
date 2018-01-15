@@ -8,7 +8,8 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from rest_framework import viewsets
+from .serializers import PostSerializer, UserDetailsSerializer
 # Create your views here.
 def index(request, page_number = 1):
 
@@ -192,3 +193,23 @@ def search(request):
     print(details[0].description)
     return render(request, 'zoop/search.html', {'results' : results,
                                                 'details' : details})
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows a user's posts list to be retrieved.
+    Parameters:
+    "username" - Insert the user-name of the user you want to retrieve posts of.
+    "number" - Insert number of recent posts to be retrieved. (min 1, max 30)
+
+    """
+    def get_queryset(self):
+        username = self.request.query_params.get('username', None)
+        number = self.request.query_params.get('number', 1)
+        number = max(1, min(number, 50));
+        queryset = Post.objects.filter(username = user)[:number]
+        if not queryset:
+            raise APIException("The provided username does not exist in the database")
+        return queryset
+
+    serializer_class = PostSerializer
