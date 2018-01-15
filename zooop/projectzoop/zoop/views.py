@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.contrib.auth import login, authenticate
 from .forms import *
 from django.shortcuts import render, redirect, get_object_or_404
@@ -72,7 +72,9 @@ def login_view(request):
     return render(request, 'zoop/login.html', {'form': form})
 
 def account(request):
-    return render(request, 'zoop/account.html')
+    response = request.GET.get('file', None)
+    print(response)
+    return render(request, 'zoop/account.html', {'file_response' : response})
 
 def register(request):
     if request.method == 'POST':
@@ -232,16 +234,22 @@ def upload_avatar(request):
         form = ImageUploadForm(request.POST, request.FILES)
         if form.is_valid():
             m = UserDetails.objects.get(pk=request.user.id)
-            image = Image.open(form.cleaned_data['image'])
-            out_img = BytesIO()
-            filename=str(form.cleaned_data['image'])
-            print(filename)
-            image = image.resize((200,200))
-            image.save(out_img, format='JPEG', quality=90)
-            out_img.seek(0)
+            try:
+                image = Image.open(form.cleaned_data['image'])
+                out_img = BytesIO()
+                #filename=str(form.cleaned_data['image'])
+                filename = str(request.user.id) + '.jpg'
+                image = image.resize((200,200))
+                image.save(out_img, format='JPEG', quality=100)
+                out_img.seek(0)
+            except:
+                return redirect('/account?file=bad')
+            m.avatar.delete()
             m.avatar = InMemoryUploadedFile(out_img,'ImageField', filename, 'image/jpeg', sys.getsizeof(out_img), None)
 
             #m.avatar = form.cleaned_data['image']
             m.save()
-            return HttpResponse('image upload success')
+            return redirect('/account?file=ok')
+        else:
+            return redirect('/account?file=bad')
     return HttpResponseForbidden('allowed only via POST')
