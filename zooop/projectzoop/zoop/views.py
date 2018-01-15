@@ -312,7 +312,7 @@ def get_reactions_count_dict(posts_queryset):
 
 def change_password(request):
     if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
+        form = ChangePasswordForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
@@ -321,7 +321,7 @@ def change_password(request):
         else:
             messages.error(request, 'Please correct the error below.')
     else:
-        form = PasswordChangeForm(request.user)
+        form = ChangePasswordForm(request.user)
     return render(request, 'registration/change_password.html', {
         'form': form
     })

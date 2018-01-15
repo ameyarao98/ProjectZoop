@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.core.exceptions import ValidationError
 from zoop.models import Post
 from emoji.unicode_codes import UNICODE_EMOJI
@@ -105,3 +106,19 @@ class AddPostForm(forms.ModelForm):
 
 class ImageUploadForm(forms.Form):
     image = forms.ImageField()
+
+class ChangePasswordForm(PasswordChangeForm):
+    class Meta:
+        model = User
+        fields = ("old_password", "new_password1", "new_password2")
+
+
+    def __init__(self, *args, **kwargs):
+        super(PasswordChangeForm, self).__init__(*args, **kwargs)
+
+        self.fields['old_password'].widget.attrs={'class':'form-group form-control',
+        'placeholder':'Password', 'value':''}
+        self.fields['new_password1'].widget.attrs={'class':'form-group form-control',
+        'placeholder':'Password', 'value':''}
+        self.fields['new_password2'].widget.attrs={'class':'form-group form-control',
+        'placeholder':'Confirm Password', 'value':''}
