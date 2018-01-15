@@ -10,17 +10,16 @@
       {% else %}
 
         {% if current_reacts|get_item:post.post_id == forloop.counter%}
-            <button tabindex="0" type="submit" class="btn btn-outline-primary active" role="button"
-            data-toggle="tooltip" title="Click to deselect">{{reaction}}</button>
+            <button data-placement="top" tabindex="0" type="submit" class="btn btn-outline-primary active" role="button"
+            data-toggle="tooltip" data-trigger="hover" title="Click to deselect">{{reaction}}</button>
         {% else %}
-          <button tabindex="0" type="submit" class="btn btn-outline-primary" disabled role="button"
-          data-toggle="tooltip" title="To use this react deselect the previous one">{{reaction}}</button>
+        <div  data-placement="top" data-toggle="tooltip" title="To use this react deselect the previous one" data-trigger="hover">
+          <button tabindex="0" type="submit" class="btn btn-outline-primary" disabled role="button">{{reaction}}</button>
+        </div>
         {% endif %}
       {%endif%}
       {% for r in react_count|get_count_list:post.post_id %}
         {% if forloop.counter == forloop.parentloop.counter %}
-
-        <p>count</p>
         <p>{{r}}</p>
         {% endif %}
       {%endfor%}
