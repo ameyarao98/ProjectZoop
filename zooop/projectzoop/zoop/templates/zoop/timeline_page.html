@@ -18,7 +18,7 @@ body {
 <div class="row">
     <div class="col-md-1">
     </div>
-    <div class="col-md-2 well">
+    <div class="col-lg-2 well">
       {%if request.user.is_authenticated%}
         <div class="card bg-light card-body mb-3">
             <a href="/profile/{{request.user.id}}"><p>{{user_object.username}}
@@ -44,15 +44,14 @@ body {
             <p><a href="#">Emoji of the Day</a>
             </p>
         </div>
-        <div class="card bg-light card-body mb-3">
-            <p>Featured Zoop</p>
-        </div>
         {% endif %}
     </div>
-    <div class="col-md-8 margin-bottom">
+    <div class="col-lg-8 margin-bottom">
       {% if request.user.is_authenticated %}
       {% if not visitor %}
-        {%include 'zoop/add_post.html'%}
+        {% if add_post_form %}
+          {%include 'zoop/add_post.html'%}
+        {% endif %}
       {% endif %}
         {% include 'zoop/timeline.html'%}
         {% include 'zoop/pagination.html' %}
