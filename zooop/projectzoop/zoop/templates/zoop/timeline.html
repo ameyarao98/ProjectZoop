@@ -2,41 +2,70 @@
 {%for post in posts%}
 <div class="row mb-3">
   <div class="col-md-3">
-    <div class="card bg-light card-body ">
+    <div class="card bg-light card-body" >
       <a href='/profile/{{post.user.id}}'><p>{{post.user}}</p></a>
       <img src="{% static 'zoop/ph.png' %}" class="rounded-circle" height="55" width="55"
-      alt="Avatar">
+      alt="Avatar" style="max-width: 100%; margin: auto">
     </div>
   </div>
   <div class="col-md-9">
-    <div class="card bg-light card-body card-post">
-      <p>{{post.content}}</p>
-      {%if request.user.id != post.user.id%}
-      <form method="post" action="{%url 'rezoop' post_id=post.post_id%}">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ request.path }}">
-        <button type="submit" class="btn btn-secondary">Rezoop</button>
-      </form>
-      {% else %}
-      <!--TODO ADD CONFIRM -->
-      <form method="post" action="{%url 'delete_post' post_id=post.post_id%}">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ request.path }}">
-        <button type="submit" class="btn btn-secondary">Delete</button>
-      </form>
-      {%endif%}
-      {% if post.user.id != post.original_poster.id %}
-      <p>REZOOPED from <a href='/profile/{{post.original_poster.id}}'>{{post.original_poster}}</a></p>
-      {% endif %}
+    <div class="card bg-light card-body card-post" style="
+    padding-top: 0px; padding-bottom: 0px ">
+      <div class="row">
+        <div class="col" style="
+        padding-left: 0px;">
+          {% if post.user.id != post.original_poster.id %}
+          <p>REZOOPED from <a href='/profile/{{post.original_poster.id}}'>{{post.original_poster}}</a></p>
+          {% endif %}
+        </div>
+        <div class="col go_right">
+          <p>When was it made?</p>
+        </div>
+      </div>
+      <div class="row" style="
+      padding-left: 20px;">
+        <p class = 'emoji-font'>{{post.content}}</p>
+      </div>
+      <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+
+
+          {%if request.user.id != post.user.id%}
+          <form method="post" action="{%url 'rezoop' post_id=post.post_id%}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <button type="submit" class="btn btn-primary">Rezoop</button>
+
+          </form>
+          {% else %}
+          <!--TODO ADD CONFIRM -->
+          <form method="post" action="{%url 'delete_post' post_id=post.post_id%}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+          {%endif%}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 {% empty %}
 
-<div class="col-md">
-  <div class="card bg-light card-body card-post">
-    <p>NOTHING TO SEE HERE 😎</p>
+  <div class="col-md">
+    <div class="card bg-light card-body card-post">
+      <p>NOTHING TO SEE HERE 😎</p>
+    </div>
   </div>
+
 </div>
 
 {% endfor %}

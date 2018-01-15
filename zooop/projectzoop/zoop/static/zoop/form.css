@@ -4,15 +4,6 @@
 body{
   background-color: #fff5af;
 }
-  /* Set black background color, white text and some padding */
-footer {
-  background-color: rgba(33, 37, 41, 0.85);
-  color: white;
-  padding: 15px;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-}
 
 #Terms a {
   color: blue;
@@ -24,4 +15,8 @@ footer {
 
 .errorlist{
   color: rgb(255, 0, 0);
+}
+
+.follow {
+  margin-top: 10px;
 }

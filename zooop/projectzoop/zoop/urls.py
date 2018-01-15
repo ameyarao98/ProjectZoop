@@ -28,8 +28,12 @@ urlpatterns = [
     path('unfollow/<int:userid>', core_views.unfollow, name='unfollow'),
     path('delete/<int:post_id>', core_views.delete_post, name='delete_post'),
     path('search', core_views.search, name='search'),
+<<<<<<< HEAD
     url(r'^ajax/get_user_timeline/$', views.get_user_timeline, name='Get user timeline'),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 
+=======
+    path('upload_avatar', core_views.upload_avatar, name='upload_avatar')
+>>>>>>> 264477bdbc4bb7fc06c3a4f90223c0e080376b15
 ]

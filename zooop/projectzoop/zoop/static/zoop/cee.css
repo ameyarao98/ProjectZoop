@@ -1,9 +1,22 @@
 .card-post{
-  height:100%;
+
 }
 .margin-bottom{
   margin-bottom: 100px;
 }
 .pagination {
-   justify-content: center;
+  justify-content: center;
+}
+
+.go_right {
+  text-align: right;
+}
+
+footer {
+  background-color: rgba(33, 37, 41, 0.85);
+  color: white;
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  padding-top: 8px;
 }

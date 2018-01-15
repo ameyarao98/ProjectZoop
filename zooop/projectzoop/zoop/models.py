@@ -35,7 +35,7 @@ class UserDetails(models.Model):
         primary_key=True,
     )
     description = models.CharField(max_length = 3000)
-
+    avatar = models.ImageField(upload_to = 'avatars/', default = 'default/Think.png')
 
 
 class Following(models.Model):

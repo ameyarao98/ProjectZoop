@@ -3,11 +3,11 @@
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">&#x2630;</button> <a class="navbar-brand" href="/">👉😎👉 Home 👈😎👈</a>
   <div class="collapse navbar-collapse" id="myNavbar">
   </form>
-  <ul class="nav navbar-nav ml-auto">
+  <ul class="nav navbar-nav ml-auto" style = "padding-top:1.5%;">
     <form class="form-inline" action="{%url 'search' %}">
       {% csrf_token %}
-      <input class="form-control mr-sm-2" name="phrase" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" name="phrase" type="search" placeholder="Find a user" aria-label="Search">
+      <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
     </form>
 
     {% if request.user.is_authenticated %}
