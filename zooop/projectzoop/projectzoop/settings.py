@@ -24,7 +24,7 @@ SECRET_KEY = 'ld8tf1s2s&zv-elt$s55eg_$2xdf2)z2pl_)*0uqu=8t+7mj%p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'project-zoop.appspot.com']
 
 
 # Application definition
@@ -83,10 +83,22 @@ WSGI_APPLICATION = 'projectzoop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'zoop',
+        'USER': 'zoop_user',
+        'PASSWORD': 'dupa123',
+        #'INSTANCE' : 'tweetgen-189702:europe-west3:tweetgen',
+        'PORT': '5432',
+        #'PORT': '3306', #use this to connect to db via google proxy
     }
 }
+
+DATABASES['default']['HOST'] = '/cloudsql/project-zoop:europe-west3:projectzoop'
+if os.getenv('GAE_INSTANCE'):
+    pass
+else:
+    DATABASES['default']['HOST'] = '127.0.0.1'
+    DATABASES['default']['PORT'] = '3306'
 
 
 # Password validation
@@ -125,11 +137,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+#STATIC_URL = '/static/'
+STATIC_URL = 'https://storage.googleapis.com/zoop-bucket/static/'
+
+#MEDIA_URL = '/media/'
+MEDIA_URL = 'https://storage.googleapis.com/zoop-bucket/media/'
+#PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+#MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
+#STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 LOGIN_REDIRECT_URL = '/'
-STATIC_DOC_ROOT = os.path.join(os.getcwd(), 'media')
+#STATIC_DOC_ROOT = os.path.join(os.getcwd(), 'media')
 #AUTH_USER_MODEL = 'zoop.CustomUser'

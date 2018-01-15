@@ -16,6 +16,7 @@ from io import BytesIO
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+import sys
 
 # Create your views here.
 def index(request, page_number = 1):
@@ -69,7 +70,6 @@ def login_view(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=raw_password)
-            print(raw_password)
             login(request, user)
             return redirect('index')
     else:
@@ -78,13 +78,11 @@ def login_view(request):
 
 def account(request):
     response = request.GET.get('file', None)
-    print(response)
     return render(request, 'zoop/account.html', {'file_response' : response})
 
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
-        print(form)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -174,7 +172,6 @@ def testing(request):
             new_form.save()
     add_post_form = AddPostForm()
     posts = Post.objects.filter(user_id = request.user.id)[:10]
-    print(posts)
     return render(request, 'zoop/testing.html',
                             {'add_post_form' : add_post_form,
                             'posts' : posts,})
@@ -252,7 +249,6 @@ class PostViewSet(viewsets.ModelViewSet):
         number = int(self.request.query_params.get('number', 1))
         number = max(1, min(number, 50));
         queryset = Post.objects.filter(user_id = user_id)[:number]
-        print(queryset)
         if not queryset:
             raise APIException("The provided username does not exist in the database")
         return queryset
@@ -316,7 +312,7 @@ def get_reactions_count_dict(posts_queryset):
 
 def change_password(request):
     if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
+        form = ChangePasswordForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
@@ -325,7 +321,7 @@ def change_password(request):
         else:
             messages.error(request, 'Please correct the error below.')
     else:
-        form = PasswordChangeForm(request.user)
+        form = ChangePasswordForm(request.user)
     return render(request, 'registration/change_password.html', {
         'form': form
     })
