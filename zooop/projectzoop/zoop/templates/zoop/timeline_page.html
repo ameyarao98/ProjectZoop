@@ -4,6 +4,8 @@
 {% load static %}
 <link rel="stylesheet" href="{% static "zoop/form.css" %}">
 <div class="row">
+    <div class="col-md-1">
+    </div>
     <div class="col-md-2 well">
       {%if request.user.is_authenticated%}
         <div class="card bg-light card-body mb-3">
