@@ -24,7 +24,7 @@ body {
         <div class="card bg-light card-body mb-3">
             <a href="/profile/{{request.user.id}}"><p>{{user_object.username}}
             </p>
-            <img src="{{MEDIA_URL}}/avatars/{{request.user.id}}.jpg" class="rounded-circle" height="65" width="65" alt="Avatar" style = "margin: auto;"/>
+            <img src="{{MEDIA_URL}}/avatars/{{user_object.id}}.jpg" class="rounded-circle" height="65" width="65" alt="Avatar" style = "margin: auto;"/>
             </a>
             {%if request.user.id != user_object.id%}
               {%if followed%}
