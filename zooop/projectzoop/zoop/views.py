@@ -8,6 +8,9 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from PIL import Image
+from io import BytesIO
+import sys
 
 # Create your views here.
 def index(request, page_number = 1):
@@ -199,3 +202,22 @@ def search(request):
         details = UserDetails.objects.filter(user__id__in = results)[:25]
     return render(request, 'zoop/search.html', {'results' : results,
                                                 'details' : details})
+
+def upload_avatar(request):
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            m = UserDetails.objects.get(pk=request.user.id)
+            image = Image.open(form.cleaned_data['image'])
+            out_img = BytesIO()
+            filename=str(form.cleaned_data['image'])
+            print(filename)
+            image = image.resize((200,200))
+            image.save(out_img, format='JPEG', quality=90)
+            out_img.seek(0)
+            m.avatar = InMemoryUploadedFile(out_img,'ImageField', filename, 'image/jpeg', sys.getsizeof(out_img), None)
+
+            #m.avatar = form.cleaned_data['image']
+            m.save()
+            return HttpResponse('image upload success')
+    return HttpResponseForbidden('allowed only via POST')

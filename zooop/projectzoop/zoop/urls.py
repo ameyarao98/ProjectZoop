@@ -18,5 +18,6 @@ urlpatterns = [
     path('follow/<int:userid>', core_views.follow, name='follow'),
     path('unfollow/<int:userid>', core_views.unfollow, name='unfollow'),
     path('delete/<int:post_id>', core_views.delete_post, name='delete_post'),
-    path('search', core_views.search, name='search')
+    path('search', core_views.search, name='search'),
+    path('upload_avatar', core_views.upload_avatar, name='upload_avatar')
 ]
