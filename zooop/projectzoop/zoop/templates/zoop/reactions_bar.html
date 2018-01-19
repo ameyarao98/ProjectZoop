@@ -2,6 +2,7 @@
 {% load extra_templates %}
   {% for reaction in reacts %}
   <div class='col'>
+    <div>
     <form method="post" action="{%url 'react' post_id=post.post_id react_id=forloop.counter%}">
       {% csrf_token %}
       <input type="hidden" name="next" value="{{ request.path }}">
@@ -24,11 +25,7 @@
         {% endif %}
       {%endfor%}
     </form>
+    </div>
   </div>
-
-  <script>
-
-  </script>
-
   {% endfor %}
 {% endblock %}
