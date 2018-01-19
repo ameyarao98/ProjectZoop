@@ -19,6 +19,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 import sys
 from emoji.unicode_codes import UNICODE_EMOJI
 import random
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request, page_number = 1):
@@ -79,6 +80,7 @@ def login_view(request):
         form = LoginForm()
     return render(request, 'zoop/login.html', {'form': form})
 
+@login_required
 def account(request):
     response = request.GET.get('file', None)
     return render(request, 'zoop/account.html', {'file_response' : response})
@@ -244,13 +246,13 @@ class PostViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows a user's posts list to be retrieved.
     Parameters:
-    "username" - Insert the user-name of the user you want to retrieve posts of.
-    "number" - Insert number of recent posts to be retrieved. (min 1, max 30)
+    "user" - Insert the user-name of the user you want to retrieve posts of.
+    "count" - Insert number of recent posts to be retrieved. (min 1, max 30)
 
     """
     def get_queryset(self):
         user_id = self.request.query_params.get('user', None)
-        number = int(self.request.query_params.get('number', 1))
+        number = int(self.request.query_params.get('count', 1))
         number = max(1, min(number, 50));
         queryset = Post.objects.filter(user_id = user_id)[:number]
         if not queryset:
