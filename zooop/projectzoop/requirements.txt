@@ -72,4 +72,4 @@ social-auth-core==1.5.0
 twitter==1.18.0
 twitter-application-only-auth==0.3.3
 Unidecode==0.4.21
-urllib3==1.22
+urllib3==1.26.5
